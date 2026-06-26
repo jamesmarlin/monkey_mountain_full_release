@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsianchud76nc"]
+
+[ext_resource type="PackedScene" uid="uid://cw5huv3g58hru" path="res://environments/test_background.tscn" id="1_g71wq"]
+[ext_resource type="PackedScene" uid="uid://dkk8x4ld1qqpa" path="res://tilesets/final_tileset_test/background_game_tileset.tscn" id="2_jbdum"]
+[ext_resource type="PackedScene" uid="uid://cqn75yxlf1l7x" path="res://tilesets/final_tileset_test/game_tileset.tscn" id="2_ty1gv"]
+[ext_resource type="PackedScene" uid="uid://yf1xss3ta0ym" path="res://player/player.tscn" id="3_juqom"]
+[ext_resource type="PackedScene" uid="uid://bwvpjhgyfwcik" path="res://player_camera.tscn" id="4_jbdum"]
+
+[node name="LevelTemplate" type="Node2D"]
+
+[node name="background_pink" parent="." instance=ExtResource("1_g71wq")]
+
+[node name="tilesets" type="Node2D" parent="."]
+
+[node name="background" parent="tilesets" instance=ExtResource("2_jbdum")]
+
+[node name="mid_ground" parent="tilesets" instance=ExtResource("2_ty1gv")]
+
+[node name="platforms" type="Node2D" parent="."]
+
+[node name="enemies" type="Node2D" parent="."]
+
+[node name="big_coin" type="Node2D" parent="."]
+
+[node name="player" parent="." instance=ExtResource("3_juqom")]
+
+[node name="player_camera" parent="." instance=ExtResource("4_jbdum")]
+
+[node name="coins" type="Node2D" parent="."]
+
+[node name="pivots" type="Node2D" parent="."]
+
+[node name="foreground" parent="." instance=ExtResource("2_ty1gv")]

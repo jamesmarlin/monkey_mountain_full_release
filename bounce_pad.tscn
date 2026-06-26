@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dydlvr2misvpw"]
+
+[ext_resource type="Texture2D" uid="uid://l2uy4p07aqdp" path="res://objects/object_sprites/bounce_pad.png" id="1_helep"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3gete"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_77y0t"]
+size = Vector2(320, 33)
+
+[node name="bounce_pad" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.53076, 0.61024)
+texture = ExtResource("1_helep")
+
+[node name="bounce" type="Area2D" parent="."]
+collision_layer = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bounce"]
+position = Vector2(-1, -18)
+scale = Vector2(17.338, -1.99324)
+shape = SubResource("CapsuleShape2D_3gete")
+debug_color = Color(0.643137, 0.494118, 0.466667, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 32)
+shape = SubResource("RectangleShape2D_77y0t")

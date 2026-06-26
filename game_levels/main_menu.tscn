@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://gkmj3eyei7op"]
+
+[ext_resource type="Script" uid="uid://0pg20usy23vr" path="res://game_levels/main_menu.gd" id="1_eafuk"]
+[ext_resource type="Texture2D" uid="uid://qfuauxiwvo0k" path="res://cutscene/main_title_screen.png" id="2_eafuk"]
+[ext_resource type="Script" uid="uid://b4wntagj432l4" path="res://game_levels/label.gd" id="3_ur4qr"]
+[ext_resource type="AudioStream" uid="uid://26vsqrcevxqm" path="res://Enemies/Retro Blop 22.wav" id="4_svhdg"]
+
+[node name="main_menu" type="Node2D"]
+script = ExtResource("1_eafuk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(696, 480)
+scale = Vector2(0.249, 0.25)
+texture = ExtResource("2_eafuk")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 176.0
+offset_top = 504.0
+offset_right = 398.0
+offset_bottom = 546.0
+theme_override_colors/font_color = Color(0.49019608, 0.16470589, 0.16470589, 1)
+theme_override_colors/font_shadow_color = Color(0.49019608, 0.16470589, 0.16470589, 1)
+theme_override_font_sizes/font_size = 30
+text = "Press D to start"
+script = ExtResource("3_ur4qr")
+
+[node name="start_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_svhdg")
+mix_target = 1
+
+[node name="text_flash" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="timeout" from="text_flash" to="." method="_on_text_flash_timeout"]

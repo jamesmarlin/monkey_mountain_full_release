@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=4 uid="uid://b2lsep8rvdlrm"]
+
+[ext_resource type="PackedScene" uid="uid://cqn75yxlf1l7x" path="res://tilesets/final_tileset_test/game_tileset.tscn" id="1_6t0re"]
+[ext_resource type="PackedScene" uid="uid://bsg0eyr0oh8nu" path="res://Enemies/charger.tscn" id="2_6kcyk"]
+[ext_resource type="PackedScene" uid="uid://yf1xss3ta0ym" path="res://player/player.tscn" id="3_hatgi"]
+[ext_resource type="PackedScene" uid="uid://bwvpjhgyfwcik" path="res://player_camera.tscn" id="4_0hgsb"]
+
+[node name="charger_test" type="Node2D"]
+
+[node name="game_tileset" parent="." instance=ExtResource("1_6t0re")]
+tile_map_data = PackedByteArray("AAD+/wMAAAACAAQAAAD//wMAAAABAAQAAAAAAAMAAAACAAQAAAABAAMAAAAAAAQAAAACAAMAAAABAAQAAAADAAMAAAACAAQAAAAEAAMAAAAAAAQAAAAFAAMAAAAAAAQAAAAGAAMAAAABAAQAAAAHAAMAAAACAAQAAAD6/wMAAAAAAAQAAAD7/wMAAAABAAQAAAD8/wMAAAAAAAQAAAD9/wMAAAABAAQAAAAIAAMAAAAAAAQAAAAJAAMAAAABAAQAAAAKAAMAAAACAAQAAAD3/wMAAAAAAAQAAAD4/wMAAAABAAQAAAD5/wMAAAACAAQAAAD0/wMAAAAAAAQAAAD1/wMAAAABAAQAAAD2/wMAAAACAAQAAADw/wMAAAAAAAQAAADx/wMAAAAAAAQAAADy/wMAAAABAAQAAADz/wMAAAACAAQAAAALAAMAAAAAAAQAAAAMAAMAAAABAAQAAAANAAMAAAACAAQAAAAOAAMAAAAAAAQAAAAPAAMAAAABAAQAAAAQAAMAAAACAAQAAAARAAMAAAAAAAQAAAASAAMAAAAAAAQAAAATAAMAAAABAAQAAAAUAAMAAAACAAQAAAAVAAMAAAAAAAQAAAAWAAMAAAAAAAQAAAAXAAMAAAABAAQAAAAYAAMAAAACAAQAAADt/wMAAAAAAAQAAADu/wMAAAABAAQAAADv/wMAAAACAAQAAAAPAAAAAAAEAAMAAAAPAAEAAAAEAAQAAAAPAAIAAAAEAAUAAADw/wAAAAAEAAMAABDw/wEAAAAEAAQAABDw/wIAAAAEAAUAABA=")
+
+[node name="charger" parent="." instance=ExtResource("2_6kcyk")]
+position = Vector2(549, 78)
+is_active = false
+dir = 1
+
+[node name="player" parent="." instance=ExtResource("3_hatgi")]
+position = Vector2(-766, 116)
+curr_level = "C"
+in_start_of_level = true
+
+[node name="player_camera" parent="." instance=ExtResource("4_0hgsb")]
+position = Vector2(-762, 108)

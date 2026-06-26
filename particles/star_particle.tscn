@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://c50qx2isk4dbk"]
+
+[ext_resource type="Texture2D" uid="uid://b21oteujm8n01" path="res://sprites/player_sprites/jump_particle_star.png" id="1_63ueg"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_63ueg"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_63ueg"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 128.0
+spread = 100.0
+gravity = Vector3(0, 100, 0)
+scale_min = 0.099999994
+scale_max = 0.29999998
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[node name="star_particle" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_63ueg")
+scale = Vector2(0.3, 0.3)
+amount = 4
+texture = ExtResource("1_63ueg")
+lifetime = 2.0
+visibility_rect = Rect2(-100, -30, 200, 100)
+process_material = SubResource("ParticleProcessMaterial_63ueg")

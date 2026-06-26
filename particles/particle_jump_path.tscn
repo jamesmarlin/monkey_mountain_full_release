@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://c7st2fbc63dqh"]
+
+[ext_resource type="Script" uid="uid://0ie0q0o4anto" path="res://particles/particle_land_path.gd" id="1_aj17o"]
+[ext_resource type="Script" uid="uid://c8xdv2smtkjjr" path="res://path_follow_2d.gd" id="1_oc2nw"]
+[ext_resource type="Texture2D" uid="uid://cmciqy83bycpd" path="res://sprites/player_sprites/particles.png" id="2_aj17o"]
+
+[sub_resource type="Curve2D" id="Curve2D_mh6sp"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -4, -2, 0, 0, 0, 0, 88.99999, 83.00001)
+}
+point_count = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sn2bs"]
+atlas = ExtResource("2_aj17o")
+region = Rect2(0, 0, 193, 173)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibvfr"]
+atlas = ExtResource("2_aj17o")
+region = Rect2(193, 0, 193, 173)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abxwo"]
+atlas = ExtResource("2_aj17o")
+region = Rect2(386, 0, 193, 173)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xm5da"]
+atlas = ExtResource("2_aj17o")
+region = Rect2(579, 0, 193, 173)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2e6e5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sn2bs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibvfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abxwo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xm5da")
+}],
+"loop": true,
+"name": &"particles",
+"speed": 5.0
+}]
+
+[node name="particle_jumo_path" type="Path2D"]
+rotation = 3.1415927
+scale = Vector2(1, -1)
+curve = SubResource("Curve2D_mh6sp")
+script = ExtResource("1_aj17o")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(-4, -2)
+rotation = 0.74048465
+loop = false
+script = ExtResource("1_oc2nw")
+
+[node name="particles" type="AnimatedSprite2D" parent="PathFollow2D"]
+texture_filter = 1
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_2e6e5")
+animation = &"particles"

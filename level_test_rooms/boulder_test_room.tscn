@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=4 uid="uid://c32fnewsxeyuq"]
+
+[ext_resource type="PackedScene" uid="uid://cw5huv3g58hru" path="res://environments/test_background.tscn" id="1_227uq"]
+[ext_resource type="PackedScene" uid="uid://cagbiwfbxma6k" path="res://tilesets/test_tileset_3.tscn" id="2_kxsmd"]
+[ext_resource type="PackedScene" uid="uid://bwvpjhgyfwcik" path="res://player_camera.tscn" id="3_bvy0s"]
+[ext_resource type="PackedScene" uid="uid://syjlapndwtbf" path="res://objects/object_scenes/boulder.tscn" id="3_qidjw"]
+[ext_resource type="PackedScene" uid="uid://yf1xss3ta0ym" path="res://player/player.tscn" id="4_kxsmd"]
+[ext_resource type="PackedScene" uid="uid://qu5i0wapfs4v" path="res://objects/object_scenes/player_boulder.tscn" id="5_qidjw"]
+
+[node name="boulder_tests" type="Node2D"]
+
+[node name="test_background" parent="." instance=ExtResource("1_227uq")]
+
+[node name="test_tileset_3" parent="." instance=ExtResource("2_kxsmd")]
+tile_map_data = PackedByteArray("AAAJAAMAAAACAAEAABAIAAMAAAADAAEAABAJAAQAAAACAAIAABAIAAQAAAADAAIAABALAAQAAAACAAEAABAKAAQAAAADAAEAABALAAUAAAACAAIAABAKAAUAAAADAAIAABANAAUAAAACAAEAABAMAAUAAAADAAEAABANAAYAAAACAAIAABAMAAYAAAADAAIAABAPAAYAAAACAAEAABAOAAYAAAADAAEAABAPAAcAAAACAAIAABAOAAcAAAADAAIAABARAAcAAAACAAEAABAQAAcAAAADAAEAABARAAgAAAACAAIAABAQAAgAAAADAAIAABASAAgAAAAAAAAAAAATAAgAAAAAAAAAAAAUAAgAAAAAAAAAAAAVAAgAAAAAAAAAAAADAAMAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAHAAMAAAAAAAAAAAD8/wMAAAADAAEAAAD7/wMAAAACAAEAAAD8/wQAAAADAAIAAAD7/wQAAAACAAIAAAD6/wQAAAADAAEAAAD5/wQAAAACAAEAAAD6/wUAAAADAAIAAAD5/wUAAAACAAIAAAD4/wUAAAADAAEAAAD3/wUAAAACAAEAAAD4/wYAAAADAAIAAAD3/wYAAAACAAIAAAD2/wYAAAADAAEAAAD1/wYAAAACAAEAAAD2/wcAAAADAAIAAAD1/wcAAAACAAIAAAD0/wcAAAADAAEAAADz/wcAAAACAAEAAAD0/wgAAAADAAIAAADz/wgAAAACAAIAAADy/wgAAAADAAEAAADx/wgAAAACAAEAAADy/wkAAAADAAIAAADx/wkAAAACAAIAAAA=")
+
+[node name="player_camera" parent="." instance=ExtResource("3_bvy0s")]
+
+[node name="player" parent="." instance=ExtResource("4_kxsmd")]
+position = Vector2(131, 79)
+
+[node name="player_boulder2" parent="." instance=ExtResource("5_qidjw")]
+position = Vector2(470, 64)
+
+[node name="boulder" parent="." instance=ExtResource("3_qidjw")]
+position = Vector2(-267, -144)
+mass = 0.001
+is_active = true

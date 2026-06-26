@@ -1,0 +1,145 @@
+[gd_scene load_steps=14 format=3 uid="uid://dm1251rh0bnak"]
+
+[ext_resource type="Script" uid="uid://cuhjlvhs02aii" path="res://objects/object_scenes/platform_path.gd" id="1_8juqh"]
+[ext_resource type="Script" uid="uid://bjhilc7dr5f3g" path="res://objects/object_scenes/line_2d.gd" id="3_b6o6a"]
+[ext_resource type="Texture2D" uid="uid://bodnyr4ohn8te" path="res://objects/object_sprites/moving_platforms.png" id="3_mkbdj"]
+
+[sub_resource type="Curve2D" id="Curve2D_f1sby"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -4)
+}
+point_count = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vw0lt"]
+atlas = ExtResource("3_mkbdj")
+region = Rect2(0, 0, 651, 171)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehwtx"]
+atlas = ExtResource("3_mkbdj")
+region = Rect2(651, 0, 651, 171)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lu5qu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vw0lt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehwtx")
+}],
+"loop": true,
+"name": &"platform_type",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oq8ni"]
+size = Vector2(256.11993, 61.6622)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1sby"]
+size = Vector2(133, 62)
+
+[sub_resource type="Animation" id="Animation_31vvd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5dgis"]
+resource_name = "move"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_b6o6a"]
+resource_name = "move_one_way"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-1.55, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sc8v3"]
+_data = {
+&"RESET": SubResource("Animation_31vvd"),
+&"move": SubResource("Animation_5dgis"),
+&"move_one_way": SubResource("Animation_b6o6a")
+}
+
+[node name="platform_path" type="Path2D" node_paths=PackedStringArray("platform_type")]
+curve = SubResource("Curve2D_f1sby")
+script = ExtResource("1_8juqh")
+loop = false
+platform_type = NodePath("moving_platform/AnimatedSprite2D")
+
+[node name="Line2D" type="Line2D" parent="." node_paths=PackedStringArray("path_node")]
+width = 5.0
+default_color = Color(0.8562174, 0.8687348, 0.9832184, 1)
+joint_mode = 2
+script = ExtResource("3_b6o6a")
+path_node = NodePath("..")
+
+[node name="moving_platform" type="AnimatableBody2D" parent="."]
+rotation = 0.00281293
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="moving_platform"]
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_lu5qu")
+animation = &"platform_type"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="moving_platform"]
+position = Vector2(-0.9732685, -0.18846616)
+shape = SubResource("RectangleShape2D_oq8ni")
+one_way_collision = true
+
+[node name="player_detection" type="Area2D" parent="moving_platform"]
+position = Vector2(-3.0365562, -12.991509)
+rotation = -0.00281293
+scale = Vector2(1.9160702, 0.9029691)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="moving_platform/player_detection"]
+position = Vector2(1.5, -52)
+shape = SubResource("RectangleShape2D_f1sby")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+rotation = 0.00281293
+rotates = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D"]
+remote_path = NodePath("../../moving_platform")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_sc8v3")
+}
+
+[connection signal="body_entered" from="moving_platform/player_detection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_exited" from="moving_platform/player_detection" to="." method="_on_player_detection_body_exited"]

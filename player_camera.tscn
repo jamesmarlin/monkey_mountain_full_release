@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwvpjhgyfwcik"]
+
+[ext_resource type="Script" uid="uid://jqjsbbnol72r" path="res://player_camera.gd" id="1_agiyq"]
+[ext_resource type="Texture2D" uid="uid://qcud8lmomh71" path="res://icon.svg" id="2_1l5io"]
+
+[node name="player_camera" type="Camera2D"]
+zoom = Vector2(0.6, 0.6)
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.0
+editor_draw_limits = true
+script = ExtResource("1_agiyq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_1l5io")

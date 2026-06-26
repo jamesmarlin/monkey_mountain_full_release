@@ -1,0 +1,242 @@
+[gd_scene load_steps=23 format=3 uid="uid://bsg0eyr0oh8nu"]
+
+[ext_resource type="Script" uid="uid://cn4cfsq3yt4fj" path="res://Enemies/charger.gd" id="1_v1o62"]
+[ext_resource type="Shader" uid="uid://j0xo46uyrx26" path="res://test_objects/damage_shader.gdshader" id="2_v1dy3"]
+[ext_resource type="Texture2D" uid="uid://dyjtcbvpsdeg7" path="res://Enemy_Sprites/charger_running.png" id="3_2njhs"]
+[ext_resource type="Texture2D" uid="uid://ctmkh0y4mt2eg" path="res://Enemy_Sprites/charger.png" id="3_v1dy3"]
+[ext_resource type="Texture2D" uid="uid://dkvy14y3pws1p" path="res://Enemy_Sprites/dash.png" id="5_ebfnd"]
+[ext_resource type="AudioStream" uid="uid://26vsqrcevxqm" path="res://Enemies/Retro Blop 22.wav" id="6_fitsq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2njhs"]
+resource_local_to_scene = true
+shader = ExtResource("2_v1dy3")
+shader_parameter/flash_enabled = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fitsq"]
+atlas = ExtResource("3_2njhs")
+region = Rect2(0, 0, 1391, 800)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2njhs"]
+atlas = ExtResource("3_v1dy3")
+region = Rect2(0, 0, 1425, 919)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebfnd"]
+atlas = ExtResource("3_v1dy3")
+region = Rect2(1425, 0, 1425, 919)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fitsq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fitsq")
+}],
+"loop": false,
+"name": &"dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2njhs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebfnd")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sepob"]
+size = Vector2(19.545376, 18.40369)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1dy3"]
+size = Vector2(784.5397, 101)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2njhs"]
+size = Vector2(162.27585, 84.205605)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebfnd"]
+size = Vector2(125, 115)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fitsq"]
+size = Vector2(214.5, 182.5)
+
+[sub_resource type="Animation" id="Animation_fitsq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.25, 0.25)]
+}
+
+[sub_resource type="Animation" id="Animation_ebfnd"]
+resource_name = "angry_charge"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.53333336),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.25, 0.25), Vector2(0.25, 0.22), Vector2(0.25, 0.25)]
+}
+
+[sub_resource type="Animation" id="Animation_febaa"]
+resource_name = "dash_circle"
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_febaa"]
+_data = {
+&"RESET": SubResource("Animation_fitsq"),
+&"angry_charge": SubResource("Animation_ebfnd"),
+&"dash_circle": SubResource("Animation_febaa")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_febaa"]
+size = Vector2(749, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8w0v"]
+size = Vector2(276.5, 192.5)
+
+[node name="charger" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 8
+floor_max_angle = 1.3613569
+floor_snap_length = 10.0
+script = ExtResource("1_v1o62")
+is_active = true
+dir = -1
+move_speed = 400
+
+[node name="dash_circles_back_layer" type="Node2D" parent="."]
+visible = false
+position = Vector2(0, -6)
+
+[node name="Sprite2D" type="Sprite2D" parent="dash_circles_back_layer"]
+position = Vector2(18.000002, 89.00001)
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("5_ebfnd")
+
+[node name="Sprite2D2" type="Sprite2D" parent="dash_circles_back_layer"]
+position = Vector2(116, 91)
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("5_ebfnd")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_2njhs")
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_fitsq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(64.99999, 9.999998)
+scale = Vector2(7.853999, 6.26663)
+shape = SubResource("RectangleShape2D_sepob")
+
+[node name="player_detection" type="Area2D" parent="." groups=["Enemy"]]
+visible = false
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_detection"]
+position = Vector2(-601.96796, -1)
+scale = Vector2(1.2823623, 2.1910317)
+shape = SubResource("RectangleShape2D_v1dy3")
+debug_color = Color(0.920786, 5.6698023e-05, 0.69547755, 0.41960785)
+
+[node name="wall_detection" type="Area2D" parent="."]
+visible = false
+scale = Vector2(2, 2)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall_detection"]
+position = Vector2(-0.5, 1)
+scale = Vector2(1.042671, 1.2498577)
+shape = SubResource("RectangleShape2D_2njhs")
+
+[node name="charger_punch" type="Area2D" parent="."]
+visible = false
+scale = Vector2(2.3700223, 1.9674159)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="charger_punch"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_ebfnd")
+debug_color = Color(0.85900414, 0.36402118, 0, 0.41960785)
+
+[node name="hit_detection" type="Area2D" parent="."]
+visible = false
+scale = Vector2(1.4991788, 0.8323341)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hit_detection"]
+position = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_fitsq")
+debug_color = Color(0.98388714, 0, 0.36777216, 0.41960785)
+
+[node name="flash_timer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="dash_circles_front_layer" type="Node2D" parent="."]
+visible = false
+position = Vector2(0, -5)
+
+[node name="Sprite2D3" type="Sprite2D" parent="dash_circles_front_layer"]
+position = Vector2(43, 90)
+scale = Vector2(0.23538005, 0.24)
+texture = ExtResource("5_ebfnd")
+
+[node name="Sprite2D2" type="Sprite2D" parent="dash_circles_front_layer"]
+position = Vector2(140.00002, 92.00001)
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("5_ebfnd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_febaa")
+}
+
+[node name="test_detection" type="Area2D" parent="."]
+visible = false
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="test_detection"]
+position = Vector2(36, 2.0000029)
+scale = Vector2(2.1579647, 13.283286)
+shape = SubResource("RectangleShape2D_febaa")
+
+[node name="charger_pivot" type="Area2D" parent="."]
+scale = Vector2(1.2680413, 1.1401868)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="charger_pivot"]
+position = Vector2(-1, 2)
+shape = SubResource("RectangleShape2D_y8w0v")
+
+[node name="death_audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_fitsq")
+volume_db = -15.0
+
+[connection signal="body_entered" from="player_detection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_entered" from="wall_detection" to="." method="_on_wall_detection_body_entered"]
+[connection signal="area_entered" from="charger_punch" to="." method="_on_punch_area_entered"]
+[connection signal="area_entered" from="hit_detection" to="." method="_on_hit_detection_area_entered"]
+[connection signal="timeout" from="flash_timer" to="." method="_on_flash_timer_timeout"]
+[connection signal="body_entered" from="test_detection" to="." method="_on_test_detection_body_entered"]
+[connection signal="area_entered" from="charger_pivot" to="." method="_on_pivot_area_entered"]

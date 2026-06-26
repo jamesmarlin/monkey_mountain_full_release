@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqys5kchrg7ts"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxdy3"]
+size = Vector2(92, 67)
+
+[node name="death_pit" type="Node2D"]
+
+[node name="death" type="Area2D" parent="."]
+collision_layer = 65536
+collision_mask = 65536
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="death"]
+shape = SubResource("RectangleShape2D_qxdy3")
+debug_color = Color(0.964706, 0, 0.501961, 0.419608)

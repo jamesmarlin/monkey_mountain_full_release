@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bws5jkf7s30r0"]
+
+[ext_resource type="Texture2D" uid="uid://i72x653t2ats" path="res://hazards/hazard_sprites/spikes_grey.png" id="1_tu15a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k6wld"]
+size = Vector2(114, 30.25)
+
+[node name="spikes" type="Node2D"]
+scale = Vector2(3, 3)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.170125, 0.156495)
+texture = ExtResource("1_tu15a")
+
+[node name="spike" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spike"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_k6wld")
+debug_color = Color(0.592157, 0.392157, 0.968627, 0.419608)

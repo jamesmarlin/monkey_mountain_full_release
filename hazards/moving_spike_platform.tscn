@@ -1,0 +1,108 @@
+[gd_scene load_steps=10 format=3 uid="uid://4wch2j7lpypf"]
+
+[ext_resource type="Script" uid="uid://cuhjlvhs02aii" path="res://objects/object_scenes/platform_path.gd" id="1_wbte1"]
+[ext_resource type="Script" uid="uid://b5qiujmvsx5eb" path="res://hazards/line_2d.gd" id="2_4tba0"]
+[ext_resource type="Texture2D" uid="uid://c8rwxcqkhfn52" path="res://Enemy_Sprites/grant.png" id="3_ppsyv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oq8ni"]
+size = Vector2(135, 119)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ppsyv"]
+size = Vector2(18.366684, 18.040844)
+
+[sub_resource type="Animation" id="Animation_31vvd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5dgis"]
+resource_name = "move"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-1.55, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_4tba0"]
+resource_name = "move_one_way"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-1.55, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sc8v3"]
+_data = {
+&"RESET": SubResource("Animation_31vvd"),
+&"move": SubResource("Animation_5dgis"),
+&"move_one_way": SubResource("Animation_4tba0")
+}
+
+[node name="platform_path" type="Path2D"]
+script = ExtResource("1_wbte1")
+loop = false
+
+[node name="Line2D" type="Line2D" parent="." node_paths=PackedStringArray("path_node")]
+script = ExtResource("2_4tba0")
+path_node = NodePath("..")
+
+[node name="moving_platform" type="AnimatableBody2D" parent="."]
+rotation = 0.00281293
+collision_layer = 0
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="moving_platform"]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("3_ppsyv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="moving_platform"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_oq8ni")
+
+[node name="spike" type="Area2D" parent="moving_platform"]
+collision_layer = 32768
+collision_mask = 32768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="moving_platform/spike"]
+position = Vector2(1.9943821, -2.0056076)
+scale = Vector2(9.419342, 9.312474)
+shape = SubResource("RectangleShape2D_ppsyv")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+rotation = 0.00281293
+progress = 603.004
+rotates = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D"]
+remote_path = NodePath("../../moving_platform")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_sc8v3")
+}

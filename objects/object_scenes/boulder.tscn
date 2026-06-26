@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://syjlapndwtbf"]
+
+[ext_resource type="Script" uid="uid://33jjo3jf3vrl" path="res://objects/object_scenes/boulder.gd" id="1_5ko3m"]
+[ext_resource type="Texture2D" uid="uid://dof0gr7fy7viq" path="res://Enemy_Sprites/boulder.png" id="2_5ko3m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ko3m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hpp57"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yq75r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tj4ql"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wxpwg"]
+
+[node name="boulder" type="RigidBody2D" groups=["boulders"]]
+collision_layer = 4
+collision_mask = 8
+mass = 0.01
+gravity_scale = 2.0
+script = ExtResource("1_5ko3m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1, 0.99999994)
+scale = Vector2(0.19, 0.2)
+texture = ExtResource("2_5ko3m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(13, 12.084)
+shape = SubResource("CircleShape2D_5ko3m")
+
+[node name="floor_detection" type="Area2D" parent="."]
+scale = Vector2(1.9394169, 1.7941736)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor_detection"]
+scale = Vector2(6.930128, 6.8061767)
+shape = SubResource("CircleShape2D_hpp57")
+debug_color = Color(0.9299975, 0.21950799, 0.3862631, 0.41960785)
+
+[node name="punch" type="Area2D" parent="."]
+visible = false
+scale = Vector2(1.6197194, 1.570435)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="punch"]
+scale = Vector2(8.213208, 7.6585655)
+shape = SubResource("CircleShape2D_yq75r")
+debug_color = Color(0.93191355, 2.6760697e-05, 0.65288615, 0.41960785)
+
+[node name="hit_detection" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hit_detection"]
+scale = Vector2(13.647828, 12.2376795)
+shape = SubResource("CircleShape2D_tj4ql")
+
+[node name="boulder_punch" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boulder_punch"]
+scale = Vector2(13.000573, 12.273308)
+shape = SubResource("CircleShape2D_wxpwg")
+
+[connection signal="body_entered" from="floor_detection" to="." method="_on_floor_detection_body_entered"]
+[connection signal="area_entered" from="hit_detection" to="." method="_on_hit_detection_area_entered"]

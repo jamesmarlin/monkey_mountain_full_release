@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://5cfvc42w2j7h"]
+
+[ext_resource type="Texture2D" uid="uid://ckeoqf8a6ntk0" path="res://special_floors_walls/special_wall_floor_1.png" id="1_qu1yr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qu1yr"]
+size = Vector2(176, 176)
+
+[node name="SpecialFloorWall1" type="StaticBody2D"]
+collision_layer = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_qu1yr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_qu1yr")
+one_way_collision = true

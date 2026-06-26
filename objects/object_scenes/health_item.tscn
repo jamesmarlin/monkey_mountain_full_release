@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://dg2oabhgw5dv"]
+
+[ext_resource type="Script" uid="uid://clw3iiwejfkgw" path="res://objects/object_scenes/health_item.gd" id="1_6rr8u"]
+[ext_resource type="Texture2D" uid="uid://c38nj6vscoe23" path="res://objects/object_sprites/fruits.png" id="2_6rr8u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssdg7"]
+atlas = ExtResource("2_6rr8u")
+region = Rect2(0, 0, 650, 650)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mp1qv"]
+atlas = ExtResource("2_6rr8u")
+region = Rect2(650, 0, 650, 650)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18jsy"]
+atlas = ExtResource("2_6rr8u")
+region = Rect2(1242, 0, 621, 650)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_thl78"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssdg7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mp1qv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18jsy")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kfx5r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kfx5r"]
+size = Vector2(71, 70)
+
+[node name="health_item" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_6rr8u")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_thl78")
+
+[node name="health_item" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="health_item"]
+scale = Vector2(5.9217806, 5.684578)
+shape = SubResource("CircleShape2D_kfx5r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 1)
+scale = Vector2(1.4991549, 1.4335182)
+shape = SubResource("RectangleShape2D_kfx5r")
+
+[connection signal="area_entered" from="health_item" to="." method="_on_health_item_area_entered"]

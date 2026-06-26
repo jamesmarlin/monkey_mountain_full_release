@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bocdes7csblub"]
+
+[ext_resource type="Script" uid="uid://bpo622uy7u4v0" path="res://test_objects/enemy_trigger.gd" id="1_jp1dt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y8wxb"]
+
+[node name="enemy_trigger" type="Area2D"]
+scale = Vector2(3.6830454, 3.9956713)
+collision_layer = 128
+script = ExtResource("1_jp1dt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.5847377, 1.6908263)
+shape = SubResource("CapsuleShape2D_y8wxb")
+debug_color = Color(0.763929, 0.44833094, 0.09809288, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,197 @@
+[gd_scene load_steps=15 format=3 uid="uid://dw1ajescchbw"]
+
+[ext_resource type="Script" uid="uid://b70jtpxfnp4lk" path="res://Enemies/leaper.gd" id="1_tep67"]
+[ext_resource type="Script" uid="uid://cry51lont25y2" path="res://Enemies/leap_body.gd" id="2_yjfiw"]
+[ext_resource type="Shader" uid="uid://j0xo46uyrx26" path="res://test_objects/damage_shader.gdshader" id="3_dmomu"]
+[ext_resource type="Texture2D" uid="uid://6d4sc25a3eio" path="res://Enemy_Sprites/croc.png" id="4_dmomu"]
+[ext_resource type="AudioStream" uid="uid://26vsqrcevxqm" path="res://Enemies/Retro Blop 22.wav" id="5_c7dx1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dmomu"]
+size = Vector2(116, 343.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dmomu"]
+
+[sub_resource type="Animation" id="Animation_c7dx1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("leaper_path_follow_2d:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("leap_body:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-7.9675374, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("leap_body:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(3.1562989, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_0q1eu"]
+resource_name = "bezier_right"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("leap_body:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(-7.9675374, -0.25, 0, 0.25, 0, 354, -0.083333336, -60.327923, 0, 0, 563, -0.083333336, -34.833336, 0, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("leap_body:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(3.1562989, -0.25, 0, 0.25, 0, -412.99997, -0.083333336, 69.35938, 0, 0, -2, -0.083333336, -68.5, 0, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+
+[sub_resource type="Animation" id="Animation_dmomu"]
+resource_name = "move"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("leaper_path_follow_2d:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1.2745605, 0.7071068),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c7dx1"]
+_data = {
+&"RESET": SubResource("Animation_c7dx1"),
+&"bezier_right": SubResource("Animation_0q1eu"),
+&"move": SubResource("Animation_dmomu")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c7dx1"]
+resource_local_to_scene = true
+shader = ExtResource("3_dmomu")
+shader_parameter/flash_enabled = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yjfiw"]
+size = Vector2(119, 119)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0q1eu"]
+size = Vector2(130, 122)
+
+[node name="leaper" type="Path2D" groups=["Enemy"]]
+script = ExtResource("1_tep67")
+
+[node name="leaper_path_follow_2d" type="PathFollow2D" parent="."]
+position = Vector2(-7.9675374, 3.1562989)
+rotation = -1.5593812
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="leaper_path_follow_2d"]
+remote_path = NodePath("../../leap_body")
+
+[node name="player_detection_up" type="Area2D" parent="."]
+position = Vector2(-1, 23.000002)
+scale = Vector2(1.2746468, 3.4896183)
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_detection_up"]
+position = Vector2(1, -213.75)
+shape = SubResource("RectangleShape2D_dmomu")
+debug_color = Color(0.96241575, 2.5027991e-06, 0.50750244, 0.41960785)
+
+[node name="player_detection_angle" type="Area2D" parent="."]
+position = Vector2(-425, -916.00006)
+scale = Vector2(2.0160277, 1.0973358)
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_detection_angle"]
+scale = Vector2(12.053559, 21.54646)
+shape = SubResource("CircleShape2D_dmomu")
+debug_color = Color(0.97945017, 0, 0.39180785, 0.41960785)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(0.2298685, 0.28135514)
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_c7dx1")
+}
+
+[node name="leap_body" type="CharacterBody2D" parent="." node_paths=PackedStringArray("collision_body", "hit_detection")]
+position = Vector2(-7.9675374, 3.1562989)
+rotation = -1.5593812
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("2_yjfiw")
+collision_body = NodePath("CollisionShape2D")
+hit_detection = NodePath("hit_detection")
+health = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="leap_body"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_c7dx1")
+rotation = 1.6580628
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_dmomu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="leap_body"]
+position = Vector2(1.5, -1.5)
+shape = SubResource("RectangleShape2D_yjfiw")
+
+[node name="hit_detection" type="Area2D" parent="leap_body"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="leap_body/hit_detection"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_0q1eu")
+
+[node name="flash_timer" type="Timer" parent="leap_body"]
+wait_time = 0.2
+
+[node name="death_audio" type="AudioStreamPlayer" parent="leap_body"]
+stream = ExtResource("5_c7dx1")
+volume_db = -15.0
+
+[connection signal="body_entered" from="player_detection_up" to="." method="_on_player_detection_up_body_entered"]
+[connection signal="body_entered" from="player_detection_angle" to="." method="_on_player_detection_angle_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="leap_body/hit_detection" to="leap_body" method="_on_hit_detection_area_entered"]
+[connection signal="timeout" from="leap_body/flash_timer" to="leap_body" method="_on_flash_timer_timeout"]

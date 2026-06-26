@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://c4n3xpoi1vm1t"]
+
+[ext_resource type="Script" path="res://objects/object_scenes/platform_path.gd" id="1_p8852"]
+[ext_resource type="PackedScene" uid="uid://dydlvr2misvpw" path="res://bounce_pad.tscn" id="2_4d1sm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0jsup"]
+size = Vector2(168.044, 25.5554)
+
+[sub_resource type="Animation" id="Animation_31vvd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5dgis"]
+resource_name = "move"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-1.55, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sc8v3"]
+_data = {
+"RESET": SubResource("Animation_31vvd"),
+"move": SubResource("Animation_5dgis")
+}
+
+[node name="platform_path" type="Path2D"]
+position = Vector2(573, 419)
+script = ExtResource("1_p8852")
+loop = false
+
+[node name="moving_platform" type="AnimatableBody2D" parent="."]
+position = Vector2(0, 13)
+rotation = 0.00281293
+
+[node name="bounce_pad" parent="moving_platform" instance=ExtResource("2_4d1sm")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="moving_platform"]
+position = Vector2(-2.90149, 35.0083)
+shape = SubResource("RectangleShape2D_0jsup")
+disabled = true
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(0, 13)
+rotation = 0.00281293
+progress = 603.004
+rotates = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D"]
+remote_path = NodePath("../../moving_platform")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sc8v3")
+}

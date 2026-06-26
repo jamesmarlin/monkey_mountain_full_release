@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqodewk735m1v"]
+
+[ext_resource type="Texture2D" uid="uid://cj3qggncnxwfu" path="res://objects/object_sprites/no_jump_sign.png" id="1_8bjlu"]
+
+[node name="no_jump_sign" type="Sprite2D"]
+texture_filter = 1
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_8bjlu")

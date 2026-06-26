@@ -1,0 +1,182 @@
+[gd_scene load_steps=14 format=3 uid="uid://bs50ao87mxche"]
+
+[ext_resource type="Texture2D" uid="uid://bu8bxh1sn7kp5" path="res://tilesets/final_tileset_test/game_tileset_background.png" id="1_afy4o"]
+[ext_resource type="Texture2D" uid="uid://coawbtk64bbhh" path="res://tilesets/walls_and_floors.png" id="2_b3jwb"]
+[ext_resource type="Texture2D" uid="uid://bo13vus57v8p1" path="res://tilesets/slopes.png" id="3_6doko"]
+[ext_resource type="Texture2D" uid="uid://bataaqteudmns" path="res://tilesets/reg_floor_tileset.png" id="4_5bqd7"]
+[ext_resource type="Texture2D" uid="uid://gwuuk3ianr5v" path="res://tilesets/backgrounds_and_water.png" id="5_5bqd7"]
+[ext_resource type="Texture2D" uid="uid://b5i44iidxtj71" path="res://tilesets/ground_items.png" id="6_rqjgy"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b3jwb"]
+texture = ExtResource("1_afy4o")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ymsmi"]
+texture = ExtResource("2_b3jwb")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rqjgy"]
+texture = ExtResource("3_6doko")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+1:3/0 = 0
+3:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqmr7"]
+texture = ExtResource("4_5bqd7")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_53ra3"]
+texture = ExtResource("5_5bqd7")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mo3v1"]
+texture = ExtResource("6_rqjgy")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ymsmi"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_b3jwb")
+sources/1 = SubResource("TileSetAtlasSource_ymsmi")
+sources/2 = SubResource("TileSetAtlasSource_rqjgy")
+sources/3 = SubResource("TileSetAtlasSource_yqmr7")
+sources/4 = SubResource("TileSetAtlasSource_53ra3")
+sources/5 = SubResource("TileSetAtlasSource_mo3v1")
+
+[node name="game_tileset_background" type="TileMapLayer"]
+tile_set = SubResource("TileSet_ymsmi")

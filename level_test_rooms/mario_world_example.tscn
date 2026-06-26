@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctohfpdfh2fg4"]
+
+[ext_resource type="Texture2D" uid="uid://ipogy6ei8aaa" path="res://level_test_rooms/yoshis-island-2.png" id="1_xhxwa"]
+
+[node name="mario-world-example" type="Sprite2D"]
+texture = ExtResource("1_xhxwa")

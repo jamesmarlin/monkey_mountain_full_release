@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=4 uid="uid://c44nixf88elop"]
+
+[ext_resource type="PackedScene" uid="uid://cqn75yxlf1l7x" path="res://tilesets/final_tileset_test/game_tileset.tscn" id="1_qw74l"]
+[ext_resource type="PackedScene" uid="uid://cdpach5yp2lp0" path="res://Enemies/birrd.tscn" id="2_v7vsx"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="game_tileset" parent="." instance=ExtResource("1_qw74l")]
+position = Vector2(232.00003, 832.00006)
+tile_map_data = PackedByteArray("AAD9/wAABgABAAAAAAD+/wAABgABAAAAAAD//wAABgABAAAAAAAAAAAABgACAAAAAAABAP//CAACAAAAAAACAP//CAADAAAAAAADAP7/CAACAAAAAAAEAP7/CAADAAAAAAAFAP3/CAACAAAAAAAGAP3/CAADAAAAAAD8/wAABgABAAAAAAD7/wAABgABAAAAAAD6/wAABgABAAAAAAD5/wAABgABAAAAAAAHAPz/CAACAAAAAAAIAPz/CAADAAAAAAAJAPv/CAACAAAAAAAKAPv/CAADAAAAAAALAPr/CAACAAAAAAAMAPr/CAADAAAAAAANAPn/CAACAAAAAAAOAPn/CAADAAAAAAAPAPj/CAACAAAAAAAQAPj/CAADAAAAAAABAAAACAADAAIAAAADAP//CAADAAIAAAAFAP7/CAADAAIAAAAHAP3/CAADAAIAAAAAAAEABgACAAEAAAAAAAIABgACAAEAAAAAAAMABgACAAEAAAABAAEACAADAAIAAAABAAIABgAAAAEAAAABAAMABgAAAAEAAAA=")
+
+[node name="birrd" parent="." instance=ExtResource("2_v7vsx")]
+position = Vector2(-87.999985, 776.00006)
+is_active = true

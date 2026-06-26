@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://cyq531flxf7hd"]
+
+[ext_resource type="Texture2D" uid="uid://swhxvhs6l81l" path="res://cutscene/title_cutscene.png" id="1_waisf"]
+[ext_resource type="Script" uid="uid://b88gxq3vw2c6f" path="res://cutscene/start_cutscene.gd" id="2_7nnr3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8l3pt"]
+atlas = ExtResource("1_waisf")
+region = Rect2(0, 0, 3448, 2576)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hgqi"]
+atlas = ExtResource("1_waisf")
+region = Rect2(0, 2576, 3448, 2576)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ges3d"]
+atlas = ExtResource("1_waisf")
+region = Rect2(0, 5152, 3448, 2576)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j57i8"]
+atlas = ExtResource("1_waisf")
+region = Rect2(0, 7728, 3448, 2576)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_651h8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8l3pt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hgqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ges3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j57i8")
+}],
+"loop": false,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+position = Vector2(574, 433)
+scale = Vector2(0.332921, 0.331553)
+sprite_frames = SubResource("SpriteFrames_651h8")
+frame = 3
+frame_progress = 1.0
+script = ExtResource("2_7nnr3")

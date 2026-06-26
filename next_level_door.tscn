@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dv4iqd25l40nt"]
+
+[ext_resource type="Script" uid="uid://crwyjkdga6pfr" path="res://next_level_door.gd" id="1_5rv5w"]
+[ext_resource type="Texture2D" uid="uid://vealcvychei7" path="res://objects/object_sprites/next_level_sign.png" id="2_5rv5w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5rv5w"]
+
+[node name="next_level_door" type="Area2D"]
+script = ExtResource("1_5rv5w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_5rv5w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, -312)
+scale = Vector2(6.6255894, 39.383648)
+shape = SubResource("CircleShape2D_5rv5w")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

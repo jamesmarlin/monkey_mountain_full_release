@@ -1,0 +1,123 @@
+[gd_scene load_steps=10 format=3 uid="uid://c2mpwklm8x7c7"]
+
+[ext_resource type="Texture2D" uid="uid://jjvsb1lcbfpj" path="res://environments/blue_environment/blue_sky.png" id="1_g66pr"]
+[ext_resource type="Texture2D" uid="uid://23hbn78nvbcm" path="res://tilesets/sun.png" id="2_8v8sa"]
+[ext_resource type="Texture2D" uid="uid://dd8fipxv7hwhn" path="res://tilesets/cloud_1.png" id="3_8ec4a"]
+[ext_resource type="Texture2D" uid="uid://ci40kclh8oskm" path="res://tilesets/cloud_2.png" id="4_slvfc"]
+[ext_resource type="Texture2D" uid="uid://cai5rh3vmmfy5" path="res://environments/blue_environment/alt_mountain_orange_tall.png" id="5_8v8sa"]
+[ext_resource type="Texture2D" uid="uid://by1m0c47d8lwf" path="res://environments/blue_environment/mountains_purple.png" id="5_g66pr"]
+[ext_resource type="Texture2D" uid="uid://yladf6pd8ro3" path="res://environments/blue_environment/alt_mountain_orange_med.png" id="6_8ec4a"]
+[ext_resource type="Texture2D" uid="uid://bvsbvm60q5urf" path="res://environments/blue_environment/large_mountain.png" id="8_8ec4a"]
+[ext_resource type="Texture2D" uid="uid://cdje610ugcyab" path="res://environments/blue_environment/purple_mountain_ground.png" id="9_slvfc"]
+
+[node name="background_pink" type="ParallaxBackground"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+scale = Vector2(11.91944, 7.954403)
+texture = ExtResource("1_g66pr")
+
+[node name="sun" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.1, 0.1)
+repeat_size = Vector2(1500, 0)
+repeat_times = 2
+follow_viewport = false
+
+[node name="Sprite2D" type="Sprite2D" parent="sun"]
+position = Vector2(925.99994, 12.999999)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_8v8sa")
+
+[node name="clouds" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.1, 0.1)
+repeat_size = Vector2(1200, 0)
+repeat_times = 3
+follow_viewport = false
+
+[node name="cloud" type="Sprite2D" parent="clouds"]
+position = Vector2(616, 320)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_8ec4a")
+
+[node name="cloud2" type="Sprite2D" parent="clouds"]
+position = Vector2(615.99994, 111.99999)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_8ec4a")
+
+[node name="cloud3" type="Sprite2D" parent="clouds"]
+position = Vector2(144.00006, 144)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_8ec4a")
+
+[node name="Sprite2D" type="Sprite2D" parent="clouds"]
+position = Vector2(464, 184)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_slvfc")
+
+[node name="Sprite2D2" type="Sprite2D" parent="clouds"]
+position = Vector2(320.00006, 119.99999)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_slvfc")
+
+[node name="large_star_mountain" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(-600, -144)
+repeat_size = Vector2(2000, 0)
+repeat_times = 10
+follow_viewport = false
+
+[node name="Sprite2D" type="Sprite2D" parent="large_star_mountain"]
+texture_filter = 1
+position = Vector2(1288, 656)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("8_8ec4a")
+
+[node name="mountain_layer_1" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.2, 0.2)
+scroll_offset = Vector2(-592, 40)
+repeat_size = Vector2(3000, 0)
+repeat_times = 20
+follow_viewport = false
+
+[node name="alt_small" type="Sprite2D" parent="mountain_layer_1"]
+texture_filter = 1
+position = Vector2(969.27594, 647.8227)
+scale = Vector2(0.36456683, 0.31838053)
+texture = ExtResource("5_8v8sa")
+
+[node name="alt_med" type="Sprite2D" parent="mountain_layer_1"]
+texture_filter = 1
+position = Vector2(537.27594, 583.82263)
+scale = Vector2(0.38140866, 0.29960144)
+texture = ExtResource("6_8ec4a")
+
+[node name="alt_large" type="Sprite2D" parent="mountain_layer_1"]
+texture_filter = 1
+position = Vector2(1617.2759, 599.82263)
+scale = Vector2(0.36102024, 0.34281445)
+texture = ExtResource("5_8v8sa")
+
+[node name="mountain_layer_2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.3, 0.3)
+scroll_offset = Vector2(-584, -80)
+repeat_size = Vector2(1000, 0)
+repeat_times = 40
+follow_viewport = false
+
+[node name="Sprite2D" type="Sprite2D" parent="mountain_layer_2"]
+texture_filter = 1
+position = Vector2(184, 856)
+scale = Vector2(0.565723, 0.43756238)
+texture = ExtResource("5_g66pr")
+
+[node name="purple_mountain_ground" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.3, 0.3)
+scroll_offset = Vector2(-595, 0)
+repeat_size = Vector2(1000, 0)
+repeat_times = 40
+follow_viewport = false
+
+[node name="Sprite2D" type="Sprite2D" parent="purple_mountain_ground"]
+position = Vector2(16, 1840)
+texture = ExtResource("9_slvfc")

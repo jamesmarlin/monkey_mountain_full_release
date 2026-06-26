@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://3yerfr2tqf25"]
+
+[ext_resource type="AudioStream" uid="uid://bu726os2mmhs" path="res://454 - MAX PAYNE.mp3" id="1_7nhm4"]
+[ext_resource type="Script" uid="uid://bouns7bl0eqmh" path="res://background_music.gd" id="2_l3d1b"]
+
+[node name="background_music" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_7nhm4")
+script = ExtResource("2_l3d1b")

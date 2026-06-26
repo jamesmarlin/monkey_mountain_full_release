@@ -1,0 +1,115 @@
+[gd_scene load_steps=16 format=4 uid="uid://0s0eu6y5q4ms"]
+
+[ext_resource type="PackedScene" uid="uid://cw5huv3g58hru" path="res://environments/test_background.tscn" id="1_luge0"]
+[ext_resource type="PackedScene" uid="uid://bs50ao87mxche" path="res://tilesets/final_tileset_test/game_tileset_background.tscn" id="2_2w4xa"]
+[ext_resource type="PackedScene" uid="uid://bws5jkf7s30r0" path="res://hazards/spikes.tscn" id="3_dvpr6"]
+[ext_resource type="PackedScene" uid="uid://cqn75yxlf1l7x" path="res://tilesets/final_tileset_test/game_tileset.tscn" id="3_ltd7y"]
+[ext_resource type="PackedScene" uid="uid://bg12mqh16r453" path="res://Enemies/birrd_fly.tscn" id="6_1dvag"]
+[ext_resource type="PackedScene" uid="uid://yf1xss3ta0ym" path="res://player/player.tscn" id="6_4gaa0"]
+[ext_resource type="PackedScene" uid="uid://dl0p7rugc3yl4" path="res://objects/object_scenes/breakable_platform.tscn" id="6_fbdb4"]
+[ext_resource type="PackedScene" uid="uid://bwvpjhgyfwcik" path="res://player_camera.tscn" id="7_5s06b"]
+[ext_resource type="PackedScene" uid="uid://dm1251rh0bnak" path="res://objects/object_scenes/moving_platform.tscn" id="7_f2pyq"]
+[ext_resource type="PackedScene" uid="uid://c0wnkllhcux6d" path="res://tilesets/final_tileset_test/game_tileset_foreground.tscn" id="8_po0pp"]
+[ext_resource type="PackedScene" uid="uid://dvm4fn0bs3uso" path="res://Enemies/dragonfly.tscn" id="11_q67a1"]
+[ext_resource type="PackedScene" uid="uid://dv4iqd25l40nt" path="res://next_level_door.tscn" id="13_aqs2k"]
+
+[sub_resource type="Curve2D" id="Curve2D_luge0"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 3, -5, 0, 0, 0, 0, 698, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_dvpr6"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -4, 0, 0, 0, 0, 11, -2244, 0, 0, 0, 0, 1135, -3017)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_fbdb4"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -4, -73.51959, 652.4864, 73.51959, -652.4864, 866, -772, 0, 0, 0, 0, -208, -1834)
+}
+point_count = 3
+
+[node name="LevelG1" type="Node2D"]
+
+[node name="background_pink" parent="." instance=ExtResource("1_luge0")]
+
+[node name="game_tileset_background" parent="." instance=ExtResource("2_2w4xa")]
+
+[node name="spikes" type="Node2D" parent="."]
+
+[node name="spikes2" parent="spikes" instance=ExtResource("3_dvpr6")]
+position = Vector2(5358, -2716.0002)
+rotation = -3.1415925
+
+[node name="spikes3" parent="spikes" instance=ExtResource("3_dvpr6")]
+position = Vector2(5539, -2883)
+rotation = 1.5707964
+
+[node name="game_tileset" parent="." instance=ExtResource("3_ltd7y")]
+tile_map_data = PackedByteArray("AABKANv/BgABAAAAAABKANz/BgABAAEAAABKAN3/BgABAAIAAABLANv/BgABAAAAAABLANz/BgABAAEAAABLAN3/BgABAAIAAABMANv/BgACAAAAAABMANz/BgACAAEAAABMAN3/BgACAAIAAABJANv/BgAAAAAAAABJANz/BgAAAAEAAABJAN3/BgAAAAIAAABEANP/CQAAAAAAAABEANT/CQAAAAEAAABEANX/CQAAAAEAAABFANP/CQABAAAAAABFANT/CQABAAEAAABFANX/CQABAAEAAABGANP/CQACAAAAAABGANT/CQACAAEAAABGANX/CQACAAEAAABEANb/CQAAAAEAAABFANb/CQABAAEAAABGANb/CQACAAEAAABEANf/CQAAAAEAAABFANf/CQABAAEAAABGANf/CQACAAEAAABEANj/CQAAAAEAAABFANj/CQABAAEAAABGANj/CQACAAEAAABEANn/CQAAAAEAAABFANn/CQABAAEAAABGANn/CQACAAEAAABEANr/CQAAAAIAAABFANr/CQABAAIAAABGANr/CQACAAIAAABRAND/CQAAAAAAAABRANH/CQAAAAEAAABRANL/CQAAAAEAAABRANP/CQAAAAEAAABRANT/CQAAAAEAAABSAND/CQABAAAAAABSANH/CQABAAEAAABSANL/CQABAAEAAABSANP/CQABAAEAAABSANT/CQABAAEAAABTAND/CQABAAAAAABTANH/CQABAAEAAABTANL/CQABAAEAAABTANP/CQABAAEAAABTANT/CQABAAEAAABUAND/CQABAAAAAABUANH/CQABAAEAAABUANL/CQABAAEAAABUANP/CQABAAEAAABUANT/CQABAAEAAABVAND/CQABAAAAAABVANH/CQABAAEAAABVANL/CQABAAEAAABVANP/CQABAAEAAABVANT/CQABAAEAAABWAND/CQACAAAAAABWANH/CQACAAEAAABWANL/CQACAAEAAABWANP/CQACAAEAAABWANT/CQACAAEAAABRANX/CQAAAAIAAABSANX/CQABAAIAAABTANX/CQABAAIAAABUANX/CQABAAIAAABVANX/CQABAAIAAABWANX/CQACAAIAAABMAND/CQAAAAAAAABNAND/CQACAAAAAABMANH/CQAAAAIAAABNANH/CQACAAIAAABBALH/BgAAAAMAAABBALL/BgAAAAQAAABBALP/BgAAAAUAAABCALH/BgABAAMAAABCALL/BgABAAQAAABCALP/BgABAAUAAABDALH/BgABAAMAAABDALL/BgABAAQAAABDALP/BgABAAUAAABEALH/BgABAAMAAABEALL/BgABAAQAAABEALP/BgABAAUAAABFALH/BgABAAMAAABFALL/BgABAAQAAABFALP/BgABAAUAAABGALH/BgABAAMAAABGALL/BgABAAQAAABGALP/BgABAAUAAABHALH/BgABAAMAAABHALL/BgABAAQAAABHALP/BgABAAUAAABIALH/BgACAAMAAABIALL/BgACAAQAAABIALP/BgACAAUAAAA=")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="dragonfly" parent="Enemies" instance=ExtResource("11_q67a1")]
+position = Vector2(6444, -1359)
+dir = -1
+move_speed = 200
+
+[node name="dragonfly2" parent="Enemies" instance=ExtResource("11_q67a1")]
+position = Vector2(4332, -1359.0001)
+dir = 1
+move_speed = 200
+
+[node name="birrd_fly" parent="Enemies" instance=ExtResource("6_1dvag")]
+position = Vector2(5839, -4050)
+curve = SubResource("Curve2D_luge0")
+
+[node name="Label" type="Label" parent="Enemies/birrd_fly"]
+offset_left = -801.0
+offset_top = 1293.0
+offset_right = -623.0
+offset_bottom = 1316.0
+text = "Shift this ove a little bit"
+
+[node name="platforms" type="Node2D" parent="."]
+
+[node name="platform_path" parent="platforms" instance=ExtResource("7_f2pyq")]
+position = Vector2(5324, -87)
+curve = SubResource("Curve2D_dvpr6")
+speed_scale = 0.3
+
+[node name="breakable_platform" parent="platforms" instance=ExtResource("6_fbdb4")]
+position = Vector2(6008, -3122.0002)
+
+[node name="platform_path2" parent="platforms" instance=ExtResource("7_f2pyq")]
+position = Vector2(5368, -3236)
+curve = SubResource("Curve2D_fbdb4")
+speed = 7.5
+one_way = true
+is_active = false
+
+[node name="Label" type="Label" parent="platforms/platform_path2"]
+offset_left = -565.46045
+offset_top = 821.5447
+offset_right = -525.46045
+offset_bottom = 844.5447
+text = "Breakable instead
+"
+
+[node name="player" parent="." instance=ExtResource("6_4gaa0")]
+position = Vector2(5325, -196)
+curr_level = "G"
+in_start_of_level = true
+
+[node name="player_camera" parent="." instance=ExtResource("7_5s06b")]
+position = Vector2(5343, -194)
+
+[node name="game_tileset_foreground" parent="." instance=ExtResource("8_po0pp")]
+
+[node name="next_level_door" parent="." instance=ExtResource("13_aqs2k")]
+position = Vector2(4268, -5144)

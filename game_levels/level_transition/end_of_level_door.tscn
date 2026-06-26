@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=3 uid="uid://cfy0cpvmabwgj"]
+
+[ext_resource type="Script" uid="uid://cxbqexjmhlbro" path="res://game_levels/level_transition/end_of_level_door.gd" id="1_k1ld5"]
+[ext_resource type="Texture2D" uid="uid://dupiinuki2rvn" path="res://objects/object_sprites/end_of_level_sign.png" id="2_k1ld5"]
+[ext_resource type="AudioStream" uid="uid://bs1x64pgxxsqn" path="res://game_levels/level_transition/Retro Instrument - choir bass - C01.wav" id="3_1pttw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k1ld5"]
+size = Vector2(112, 112)
+
+[sub_resource type="Animation" id="Animation_1pttw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.2, 0.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_k1ld5"]
+resource_name = "grow_and_fade"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.2, 0.2), Vector2(4.5, 4.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.101960786)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kp1hy"]
+_data = {
+&"RESET": SubResource("Animation_1pttw"),
+&"grow_and_fade": SubResource("Animation_k1ld5")
+}
+
+[node name="end_of_level_door" type="Area2D" node_paths=PackedStringArray("animation_player")]
+process_mode = 3
+script = ExtResource("1_k1ld5")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_k1ld5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_k1ld5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_kp1hy")
+}
+
+[node name="end_of_level" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_1pttw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

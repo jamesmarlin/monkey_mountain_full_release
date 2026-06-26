@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjqsqrqvcf26b"]
+
+[ext_resource type="Script" uid="uid://bi7065ohsohbb" path="res://objects/object_scenes/big_coin_item.gd" id="1_m0g3w"]
+[ext_resource type="Texture2D" uid="uid://coruu7ywfc5l8" path="res://objects/object_sprites/big_monkey_coin.png" id="2_m0g3w"]
+[ext_resource type="Shader" uid="uid://d0bbpeb72sp0" path="res://objects/object_scenes/shine_shader.gdshader" id="2_xlg4h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_th6m0"]
+shader = ExtResource("2_xlg4h")
+shader_parameter/Angle_deg = 30.0
+shader_parameter/Brightness = 2.5
+shader_parameter/Band_Soft = 0.06
+shader_parameter/Stage_Count = 2
+shader_parameter/Stage1_Duration = 1.0
+shader_parameter/Stage2_Duration = 1.5
+shader_parameter/Stage3_Duration = 1.0
+shader_parameter/Stage1_Width = 0.12
+shader_parameter/Stage2_Width = 0.12
+shader_parameter/Stage3_Width = 0.12
+shader_parameter/Stage1_LeftToRight = true
+shader_parameter/Stage2_LeftToRight = false
+shader_parameter/Stage3_LeftToRight = true
+shader_parameter/One_Shot = false
+shader_parameter/OneShot_Delay = 0.0
+shader_parameter/Phase_Offset = 0.0
+shader_parameter/Wiggle_Angle = false
+shader_parameter/Wiggle_Amount_deg = 15.0
+shader_parameter/Shine_Pause = 0.4
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m0g3w"]
+
+[node name="big_coin_item" type="Area2D"]
+collision_layer = 512
+collision_mask = 512
+script = ExtResource("1_m0g3w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_th6m0")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_m0g3w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(6.4903846, 6.417687)
+shape = SubResource("CircleShape2D_m0g3w")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

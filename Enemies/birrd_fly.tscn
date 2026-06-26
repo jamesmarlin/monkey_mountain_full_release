@@ -1,0 +1,147 @@
+[gd_scene load_steps=17 format=3 uid="uid://bg12mqh16r453"]
+
+[ext_resource type="Script" uid="uid://e5pfcmv6jbge" path="res://Enemies/birrd_fly.gd" id="1_3wypn"]
+[ext_resource type="Script" uid="uid://bsiwtgx15fx5d" path="res://Enemies/birrd_fly_body.gd" id="2_pmuth"]
+[ext_resource type="Shader" uid="uid://j0xo46uyrx26" path="res://test_objects/damage_shader.gdshader" id="3_eendm"]
+[ext_resource type="Texture2D" uid="uid://dnvyxctw0dbp8" path="res://Enemy_Sprites/birrd_glide_frame_blue.png" id="5_1gax3"]
+[ext_resource type="AudioStream" uid="uid://26vsqrcevxqm" path="res://Enemies/Retro Blop 22.wav" id="5_rbu1o"]
+
+[sub_resource type="Curve2D" id="Curve2D_3wypn"]
+resource_local_to_scene = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1gax3"]
+resource_local_to_scene = true
+shader = ExtResource("3_eendm")
+shader_parameter/flash_enabled = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18m32"]
+atlas = ExtResource("5_1gax3")
+region = Rect2(0, 0, 772, 391)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xysje"]
+atlas = ExtResource("5_1gax3")
+region = Rect2(772, 0, 772, 391)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_18m32"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18m32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xysje")
+}],
+"loop": false,
+"name": &"birrd_fly",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3wypn"]
+size = Vector2(107.7956, 100.5749)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmuth"]
+size = Vector2(140, 127)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eendm"]
+size = Vector2(60, 16)
+
+[sub_resource type="Animation" id="Animation_1gax3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("birrd_fly_path_follow_2d:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_eendm"]
+resource_name = "move"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("birrd_fly_path_follow_2d:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-1.54, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1gax3"]
+_data = {
+&"RESET": SubResource("Animation_1gax3"),
+&"move": SubResource("Animation_eendm")
+}
+
+[node name="birrd_fly" type="Path2D"]
+curve = SubResource("Curve2D_3wypn")
+script = ExtResource("1_3wypn")
+
+[node name="birrd_fly_path_follow_2d" type="PathFollow2D" parent="."]
+rotates = false
+loop = false
+
+[node name="birrd_fly_body" type="CharacterBody2D" parent="birrd_fly_path_follow_2d" node_paths=PackedStringArray("collision_body", "hit_detection")]
+scale = Vector2(0.9, 0.9)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("2_pmuth")
+collision_body = NodePath("CollisionShape2D")
+hit_detection = NodePath("hit detection")
+health = 1
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="birrd_fly_path_follow_2d/birrd_fly_body"]
+material = SubResource("ShaderMaterial_1gax3")
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_18m32")
+animation = &"birrd_fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="birrd_fly_path_follow_2d/birrd_fly_body"]
+position = Vector2(-2.2222223, -1.1111116)
+scale = Vector2(1.0171024, 0.8728574)
+shape = SubResource("RectangleShape2D_3wypn")
+
+[node name="hit detection" type="Area2D" parent="birrd_fly_path_follow_2d/birrd_fly_body"]
+scale = Vector2(0.80816054, 0.6877059)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="birrd_fly_path_follow_2d/birrd_fly_body/hit detection"]
+position = Vector2(-1, -0.5)
+shape = SubResource("RectangleShape2D_pmuth")
+debug_color = Color(0.92547715, 0.22763693, 0.3921189, 0.41960785)
+
+[node name="flash_timer" type="Timer" parent="birrd_fly_path_follow_2d/birrd_fly_body"]
+wait_time = 0.2
+
+[node name="bounce" type="Area2D" parent="birrd_fly_path_follow_2d/birrd_fly_body" groups=["Enemy"]]
+position = Vector2(-1.1111112, -47.77778)
+scale = Vector2(2.487866, 1.6002703)
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="birrd_fly_path_follow_2d/birrd_fly_body/bounce"]
+shape = SubResource("RectangleShape2D_eendm")
+
+[node name="death_audio" type="AudioStreamPlayer" parent="birrd_fly_path_follow_2d/birrd_fly_body"]
+stream = ExtResource("5_rbu1o")
+volume_db = -15.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1gax3")
+}
+
+[connection signal="area_entered" from="birrd_fly_path_follow_2d/birrd_fly_body/hit detection" to="birrd_fly_path_follow_2d/birrd_fly_body" method="_on_hit_detection_area_entered"]
+[connection signal="timeout" from="birrd_fly_path_follow_2d/birrd_fly_body/flash_timer" to="birrd_fly_path_follow_2d/birrd_fly_body" method="_on_flash_timer_timeout"]
+[connection signal="area_entered" from="birrd_fly_path_follow_2d/birrd_fly_body/bounce" to="birrd_fly_path_follow_2d/birrd_fly_body" method="_on_bounce_area_entered"]

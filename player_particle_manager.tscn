@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://blh6rjxhtkw1c"]
+
+[ext_resource type="PackedScene" uid="uid://d0jf1sj2cfeg7" path="res://particles/particle_path_left.tscn" id="1_5gr3m"]
+
+[node name="player_particle_manager" type="Node2D"]
+
+[node name="particle_path_right" parent="." instance=ExtResource("1_5gr3m")]
+visible = false
+
+[node name="particle_path_left" parent="." instance=ExtResource("1_5gr3m")]

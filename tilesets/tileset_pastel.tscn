@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=4 uid="uid://dngm0y0e3msvx"]
+
+[ext_resource type="Texture2D" uid="uid://bektwrly4d06x" path="res://tilesets/Frame 12.png" id="1_beecp"]
+[ext_resource type="Texture2D" uid="uid://c3xkjbrwlwlua" path="res://tilesets/Frame 12 (1).png" id="1_eqys3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_swcid"]
+texture = ExtResource("1_eqys3")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eqys3"]
+texture = ExtResource("1_beecp")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+2:1/0 = 0
+1:1/0 = 0
+0:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_attkh"]
+tile_size = Vector2i(64, 64)
+sources/11 = SubResource("TileSetAtlasSource_eqys3")
+sources/0 = SubResource("TileSetAtlasSource_swcid")
+
+[node name="TileMapLayer" type="TileMapLayer"]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAD//wAACwAAAAAAAAD//wEACwAAAAEAAAAAAAAACwABAAAAAAABAAAACwABAAAAAAACAAAACwABAAAAAAADAAAACwACAAAAAAAAAAEACwABAAEAAAABAAEACwABAAEAAAACAAEACwABAAEAAAADAAEACwACAAEAAAA=")
+tile_set = SubResource("TileSet_attkh")

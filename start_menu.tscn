@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://btnwh2mupcgnk"]
+
+[ext_resource type="Texture2D" uid="uid://wk87hmkppo0g" path="res://start_menu.png" id="1_ivvvs"]
+[ext_resource type="Script" uid="uid://dm13nybv5fxgo" path="res://Button.gd" id="2_wtver"]
+
+[node name="start_menu" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 449)
+scale = Vector2(0.30401, 0.389486)
+texture = ExtResource("1_ivvvs")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 845.0
+offset_top = 332.0
+offset_right = 891.0
+offset_bottom = 363.0
+scale = Vector2(5.67066, 5.47569)
+text = "Go!"
+script = ExtResource("2_wtver")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

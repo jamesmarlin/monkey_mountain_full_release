@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://t5nboeoryhrd"]
+
+[ext_resource type="Texture2D" uid="uid://qcud8lmomh71" path="res://icon.svg" id="1_1hnh3"]
+[ext_resource type="Script" uid="uid://ci1c52h0c3bke" path="res://test_objects/test_enemy_2.gd" id="1_lxx65"]
+[ext_resource type="Shader" uid="uid://j0xo46uyrx26" path="res://test_objects/damage_shader.gdshader" id="2_n6oss"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hyoud"]
+resource_local_to_scene = true
+shader = ExtResource("2_n6oss")
+shader_parameter/flash_enabled = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxx65"]
+size = Vector2(123, 123)
+
+[node name="test_enemy_2" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 4
+script = ExtResource("1_lxx65")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_hyoud")
+texture = ExtResource("1_1hnh3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_lxx65")
+
+[node name="flash_timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="timeout" from="flash_timer" to="." method="_on_flash_timer_timeout"]

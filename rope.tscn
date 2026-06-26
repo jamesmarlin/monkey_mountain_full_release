@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://bws8yhu6w0thb"]
+
+[ext_resource type="Texture2D" uid="uid://08umch3adrtb" path="res://objects/object_sprites/rope_stem.png" id="1_jry5w"]
+[ext_resource type="Script" uid="uid://dfbpc8erelc0" path="res://rope_body.gd" id="2_nmccy"]
+[ext_resource type="Texture2D" uid="uid://dqmw01psul0ju" path="res://objects/object_sprites/rope.png" id="3_auoud"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmccy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0756u"]
+size = Vector2(194.09442, 129.62967)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jry5w"]
+size = Vector2(170.7854, 21.079483)
+
+[node name="rope" type="Node2D"]
+
+[node name="rope_knot" type="RigidBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rope_knot"]
+scale = Vector2(0.16142538, 0.19187255)
+shape = SubResource("RectangleShape2D_nmccy")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="rope_knot"]
+scale = Vector2(0.16142538, 0.19187255)
+texture = ExtResource("1_jry5w")
+
+[node name="rope_body" type="RigidBody2D" parent="."]
+position = Vector2(2.0000002, 44.000004)
+rotation = 0.009285485
+collision_layer = 2
+collision_mask = 2
+mass = 0.3
+center_of_mass_mode = 1
+script = ExtResource("2_nmccy")
+
+[node name="Sprite2D" type="Sprite2D" parent="rope_body"]
+position = Vector2(-1.351593, 105.99138)
+scale = Vector2(0.134, 0.4)
+texture = ExtResource("3_auoud")
+
+[node name="rope_body_collision" type="CollisionShape2D" parent="rope_body"]
+visible = false
+position = Vector2(-2.7091851, 92.82637)
+scale = Vector2(0.13387887, 2.3)
+shape = SubResource("RectangleShape2D_0756u")
+
+[node name="rope_area" type="Area2D" parent="rope_body"]
+visible = false
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rope_body/rope_area"]
+position = Vector2(-0.46558988, 59.447796)
+rotation = -3.1415925
+scale = Vector2(0.20773432, -10.753027)
+shape = SubResource("RectangleShape2D_jry5w")
+debug_color = Color(0.9716875, 0, 0.4495002, 0.41960785)
+
+[node name="Marker2D4" type="Marker2D" parent="rope_body"]
+position = Vector2(0.41770387, 202.52179)
+scale = Vector2(2.4322476, 3.2148526)
+
+[node name="Marker2D5" type="Marker2D" parent="rope_body"]
+position = Vector2(-0.2050389, 94.50506)
+scale = Vector2(2.4322476, 3.2148526)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(0, 2)
+node_a = NodePath("../rope_knot")
+node_b = NodePath("../rope_body")
+
+[connection signal="child_entered_tree" from="rope_body" to="rope_body" method="_on_child_entered_tree"]
+[connection signal="child_exiting_tree" from="rope_body" to="rope_body" method="_on_child_exiting_tree"]

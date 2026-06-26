@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://bmlq2r6u156fr"]
+
+[ext_resource type="PackedScene" uid="uid://dehmbwdcnneni" path="res://wall.tscn" id="1_srn33"]
+[ext_resource type="PackedScene" uid="uid://biq1x6tq70seh" path="res://objects/object_scenes/spawn_point.tscn" id="1_ytowg"]
+[ext_resource type="PackedScene" uid="uid://yf1xss3ta0ym" path="res://player/player.tscn" id="2_1jcib"]
+[ext_resource type="PackedScene" uid="uid://cqys5kchrg7ts" path="res://hazards/death_pit.tscn" id="4_7p6j0"]
+[ext_resource type="Texture2D" uid="uid://qcud8lmomh71" path="res://icon.svg" id="5_ykrsh"]
+[ext_resource type="PackedScene" uid="uid://bws8yhu6w0thb" path="res://rope.tscn" id="6_g14j6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g14j6"]
+size = Vector2(121, 123)
+
+[node name="TEST" type="Node2D"]
+
+[node name="wall" parent="." instance=ExtResource("1_srn33")]
+position = Vector2(477, 633.00006)
+rotation = 0.0034254196
+scale = Vector2(6.07007, -0.542664)
+
+[node name="wall4" parent="." instance=ExtResource("1_srn33")]
+position = Vector2(465.00003, 282.00003)
+rotation = 0.0034254196
+scale = Vector2(6.07007, -0.542664)
+
+[node name="wall2" parent="." instance=ExtResource("1_srn33")]
+position = Vector2(-9.000002, 308)
+rotation = -1.56699
+scale = Vector2(3.8114, -0.746433)
+
+[node name="wall3" parent="." instance=ExtResource("1_srn33")]
+position = Vector2(1307, 316.99997)
+rotation = -1.56699
+scale = Vector2(3.8114, -0.746433)
+
+[node name="player" parent="." instance=ExtResource("2_1jcib")]
+position = Vector2(146, 217)
+scale = Vector2(0.5, 0.5)
+jump_height = 200.0
+
+[node name="death_pit" parent="." instance=ExtResource("4_7p6j0")]
+position = Vector2(983.99994, 852)
+scale = Vector2(10.998928, -1.301251)
+
+[node name="spawn_points" type="Node" parent="."]
+
+[node name="spawn_point" parent="spawn_points" instance=ExtResource("1_ytowg")]
+position = Vector2(295, 547)
+scale = Vector2(7.44, 6.714065)
+
+[node name="spawn_point2" parent="spawn_points" instance=ExtResource("1_ytowg")]
+position = Vector2(155, 194)
+scale = Vector2(7.44, 6.714065)
+
+[node name="test_enemy" type="CharacterBody2D" parent="." groups=["Enemy"]]
+position = Vector2(802.00006, 579.00006)
+scale = Vector2(0.5535357, 0.52764565)
+
+[node name="Sprite2D" type="Sprite2D" parent="test_enemy"]
+texture = ExtResource("5_ykrsh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="test_enemy"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_g14j6")
+
+[node name="rope" parent="." instance=ExtResource("6_g14j6")]
+position = Vector2(620, 10)

@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://8qhcg338gsl5"]
+
+[ext_resource type="Texture2D" uid="uid://cyraykovujv3d" path="res://Enemy_Sprites/birrd_walk_cycle.png" id="1_5stov"]
+[ext_resource type="Script" uid="uid://qliemwmpiyt6" path="res://Enemies/birrd_walk_test.gd" id="1_he1l0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_he1l0"]
+atlas = ExtResource("1_5stov")
+region = Rect2(0, 0, 443, 386)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j23yp"]
+atlas = ExtResource("1_5stov")
+region = Rect2(443, 0, 443, 386)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4cvhh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_he1l0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j23yp")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8anwk"]
+size = Vector2(80, 80)
+
+[node name="birrd_walk_test" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_he1l0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_4cvhh")
+animation = &"walk"
+frame_progress = 0.059504807
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8anwk")

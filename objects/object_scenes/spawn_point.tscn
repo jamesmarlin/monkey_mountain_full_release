@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://biq1x6tq70seh"]
+
+[ext_resource type="Script" uid="uid://c17hl7xs8pm5q" path="res://objects/object_scenes/spawn_point.gd" id="1_pv81r"]
+[ext_resource type="Texture2D" uid="uid://lag4dav5gsdo" path="res://objects/object_sprites/checkpoint.png" id="2_qd141"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pv81r"]
+
+[node name="spawn_point" type="Area2D"]
+script = ExtResource("1_pv81r")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(18.038858, 7.44324)
+shape = SubResource("CircleShape2D_pv81r")
+debug_color = Color(0.577166, 0.5535606, 0, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 2
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_qd141")
